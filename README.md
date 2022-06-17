@@ -11,6 +11,6 @@ A React UI Toolkit for Web.
 0. React Hooks
 1. pnpm workspace
 2. typescript
-3. vitepress
+3. dumi
 4. vitest
 5. tailwind.css
