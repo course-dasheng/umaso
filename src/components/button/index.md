@@ -8,8 +8,8 @@ group:
 Demo:
 
 ```tsx
-import React from 'react';
-import { Button } from 'umaso';
+import React from 'react'
+import { Button } from 'umaso'
 
 export default () => <div>
   <Button>测试</Button>
