@@ -1,7 +1,7 @@
 ---
 hero:
   title: umaso
-  desc: umaso site example
+  desc: 一个简单的react组件库
   actions:
     - text: Getting Started
       link: /components
