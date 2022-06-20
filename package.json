@@ -1,6 +1,7 @@
 {
   "name": "umaso",
   "version": "0.0.1",
+  "module": "es/index.js",
   "scripts": {
     "test": "vitest",
     "test:once": "vitest run",
@@ -9,13 +10,10 @@
     "coverage": "vitest run --coverage",
     "docs": "dumi dev",
     "docs:build": "dumi build",
-    "build": "father-build"
+    "build": "father-build",
+    "prepare": "husky install"
   },
-  "module": "es/index.js",
   "typings": "es/index.d.ts",
-  "gitHooks": {
-    "pre-commit": "npm run lint"
-  },
   "dependencies": {
     "classnames": "^2.3.1",
     "react": "^18.2.0"
@@ -32,9 +30,15 @@
     "dumi": "^1.1.0",
     "eslint": "^8.18.0",
     "husky": "^8.0.1",
+    "lint-staged": "^13.0.2",
     "react-test-renderer": "^18.2.0",
     "sass": "^1.52.3",
     "typescript": "^4.7.4",
     "vitest": "^0.15.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md,json,yml,yaml}": [
+      "eslint --fix"
+    ]
   }
 }
