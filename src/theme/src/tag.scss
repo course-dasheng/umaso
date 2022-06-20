@@ -19,7 +19,7 @@
     border-color: $--tag-primary-color;
   }
 
-  .el-tag__close {
+  .umaso-tag__close {
     color: mix($--tag-primary-color, $--color-white, $fontColorWeight);
     &:hover {
       color: $--color-white;
@@ -31,7 +31,7 @@
     }
   }
 
-  &.el-tag--info {
+  &.umaso-tag--info {
     background-color: mix(
       $--tag-info-color,
       $--color-white,
@@ -44,7 +44,7 @@
       border-color: $--tag-info-color;
     }
 
-    .el-tag__close {
+    .umaso-tag__close {
       color: mix($--tag-info-color, $--color-white, $fontColorWeight);
       &:hover {
         color: $--color-white;
@@ -57,7 +57,7 @@
     }
   }
 
-  &.el-tag--success {
+  &.umaso-tag--success {
     background-color: mix(
       $--tag-success-color,
       $--color-white,
@@ -70,7 +70,7 @@
       border-color: $--tag-success-color;
     }
 
-    .el-tag__close {
+    .umaso-tag__close {
       color: mix($--tag-success-color, $--color-white, $fontColorWeight);
       &:hover {
         color: $--color-white;
@@ -83,7 +83,7 @@
     }
   }
 
-  &.el-tag--warning {
+  &.umaso-tag--warning {
     background-color: mix(
       $--tag-warning-color,
       $--color-white,
@@ -96,7 +96,7 @@
       border-color: $--tag-warning-color;
     }
 
-    .el-tag__close {
+    .umaso-tag__close {
       color: mix($--tag-warning-color, $--color-white, $fontColorWeight);
       &:hover {
         color: $--color-white;
@@ -109,7 +109,7 @@
     }
   }
 
-  &.el-tag--danger {
+  &.umaso-tag--danger {
     background-color: mix(
       $--tag-danger-color,
       $--color-white,
@@ -122,7 +122,7 @@
       border-color: $--tag-danger-color;
     }
 
-    .el-tag__close {
+    .umaso-tag__close {
       color: mix($--tag-danger-color, $--color-white, $fontColorWeight);
       &:hover {
         color: $--color-white;
@@ -150,10 +150,10 @@
   box-sizing: border-box;
   white-space: nowrap;
 
-  .el-icon-close {
+  .umaso-icon-close {
     border-radius: 50%;
     text-align: center;
-    position: relative;
+    position: rumasoative;
     cursor: pointer;
     font-size: 12px;
     height: 16px;
@@ -180,7 +180,7 @@
     height: 28px;
     line-height: 26px;
 
-    .el-icon-close {
+    .umaso-icon-close {
       transform: scale(0.8);
     }
   }
@@ -190,7 +190,7 @@
     padding: 0 8px;
     line-height: 22px;
 
-    .el-icon-close {
+    .umaso-icon-close {
       transform: scale(0.8);
     }
   }
@@ -200,7 +200,7 @@
     padding: 0 5px;
     line-height: 19px;
 
-    .el-icon-close {
+    .umaso-icon-close {
       margin-left: -3px;
       transform: scale(0.7);
     }
