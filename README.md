@@ -1,16 +1,33 @@
-<p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/shengxinjing/static/umaso.webp">
-</p>
+# umaso
 
-## Introduction
+## Getting Started
 
-A React UI Toolkit for Web.
+Install dependencies,
 
-## tasks
+```bash
+$ npm i
+```
 
-0. React Hooks
-1. pnpm workspace
-2. typescript
-3. dumi
-4. vitest
-5. tailwind.css
+Start the dev server,
+
+```bash
+$ npm start
+```
+
+Build documentation,
+
+```bash
+$ npm run docs:build
+```
+
+Run test,
+
+```bash
+$ npm test
+```
+
+Build library via `father-build`,
+
+```bash
+$ npm run build
+```

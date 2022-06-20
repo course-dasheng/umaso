@@ -1,12 +1,41 @@
 {
+  "private": true,
   "name": "umaso",
-  "version": "0.0.2",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest",
+    "test:once": "vitest run",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
+    "lint:fix": "eslint --fix \"**/*.{ts,tsx,js,jsx}\"",
+    "coverage": "vitest run --coverage",
+    "docs": "dumi dev",
+    "docs:build": "dumi build",
+    "build": "father-build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
+  "gitHooks": {
+    "pre-commit": "npm run lint"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.25.1",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/user-event": "^14.2.1",
+    "@umijs/plugin-sass": "^1.1.1",
+    "@vitejs/plugin-react": "^1.3.2",
+    "c8": "^7.11.3",
+    "dumi": "^1.1.0",
+    "eslint": "^8.18.0",
+    "husky": "^8.0.1",
+    "react-test-renderer": "^18.2.0",
+    "sass": "^1.52.3",
+    "typescript": "^4.7.4",
+    "vitest": "^0.15.1"
+  }
 }
