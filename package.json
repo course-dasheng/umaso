@@ -11,10 +11,12 @@
     "docs": "dumi dev",
     "docs:build": "dumi build",
     "build": "father-build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "typecheck": "tsc --noEmit"
   },
   "typings": "es/index.d.ts",
   "dependencies": {
+    "@types/react-test-renderer": "^18.0.0",
     "classnames": "^2.3.1",
     "react": "^18.2.0"
   },
@@ -34,6 +36,7 @@
     "react-test-renderer": "^18.2.0",
     "sass": "^1.52.3",
     "typescript": "^4.7.4",
+    "vite": "^2.9.12",
     "vitest": "^0.15.1"
   },
   "lint-staged": {
