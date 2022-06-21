@@ -4,11 +4,11 @@
   <img src="https://cdn.jsdelivr.net/gh/shengxinjing/static/umaso.webp">
 </p>
 
-## Introduction
+## 介绍
 
-A React UI Toolkit for Web.
+一个以学习为目的的React组件库
 
-## tasks
+## 任务
 
 0. React Hooks
 1. pnpm workspace
@@ -19,7 +19,7 @@ A React UI Toolkit for Web.
 
 
 ## components
-基于issue领任务，组件体系参考element3和ant.deisgn
+组件体系参考element3和ant.deisgn
 
 1. 通用组件
 2. 表单组件
