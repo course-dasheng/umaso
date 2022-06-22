@@ -1,5 +1,5 @@
-import React from 'react'
-import type { MouseEventHandler, ReactNode } from 'react'
+import React, { useEffect, useState } from 'react'
+import type { Component, MouseEventHandler, ReactNode } from 'react'
 
 import '../../theme/src/tag.scss'
 
@@ -7,7 +7,8 @@ type SizeType = 'medium' | 'small' | 'mini'
 type EffectType = 'dark' | 'light' | 'plain'
 
 interface TagProps {
-  closable?: boolean
+  children?: string | Component
+  closeable?: boolean
   closeIcon?: ReactNode
   type?: string
   color?: string
@@ -15,18 +16,50 @@ interface TagProps {
   visible?: boolean
   size?: SizeType | number
   effect?: EffectType
-  onClose: (e: Event) => void
+  onClose: MouseEventHandler
   onClick: MouseEventHandler
 }
 
 export default function Tag(props: TagProps) {
-  function useClassName() {
-    const className: string[] = ['umaso-tag']
-    return className.join(' ')
+  const {
+    // children,
+    closeable,
+    // closeIcon,
+    // type,
+    // color,
+    // icon,
+    visible,
+    // size,
+    // effect,
+    onClose,
+    onClick,
+  } = props
+
+  const [className, setClassName] = useState(['el-tag'])
+
+  // console.log(visible)
+
+  useEffect(() => {
+    !visible && setClassName(className => ([...className, 'el-tag-hidden'])) // display:none
+  }, [visible])
+
+  function handleClose(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
+    onClose(e)
+    setClassName([...className, 'el-tag-hidden'])
   }
-  const classList = useClassName()
+
   return (
-    <span className={classList} onClick={props.onClick}>
+    <span className={className.join(' ')} onClick={onClick}>
+      {
+        closeable
+        && <span
+          role="img"
+          aria-label="close"
+          tabIndex={-1}
+          onClick={handleClose}
+          className="el-icon el-icon-close el-tag-close-icon"
+        >close</span> }
+      {props.children}
     </span>
   )
 }
