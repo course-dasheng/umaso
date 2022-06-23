@@ -15,7 +15,7 @@ export default () => {
   const [visible, setVisible] = useState(true)
 
   return <div>
-    <Tag visible={visible} >测试</Tag>
+    <Tag color="magenta" closeable={true} visible={visible} >测试</Tag>
     <br/>
     <button onClick={() => {
       setVisible((vis) => {

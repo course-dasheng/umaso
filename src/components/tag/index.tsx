@@ -12,54 +12,115 @@ interface TagProps {
   closeIcon?: ReactNode
   type?: string
   color?: string
-  icon: ReactNode
+  icon?: ReactNode
   visible?: boolean
   size?: SizeType | number
   effect?: EffectType
-  onClose: MouseEventHandler
-  onClick: MouseEventHandler
+  onClose?: MouseEventHandler
+  onClick?: MouseEventHandler
+}
+
+const colorKeys = ['red', 'green', 'blue', 'magenta', 'volcano', 'orange', 'gold', 'lime', 'cyan', 'geekblue', 'purple']
+
+function getColorClass(color: string | undefined) {
+  let colorClassName: string
+  if (color) {
+    if (colorKeys.includes(color))
+      colorClassName = `el-tag-${color}`
+    else
+      colorClassName = 'el-tag-has-color'
+
+    return colorClassName
+  }
+  return ''
+}
+
+function getVisibleClass(visible: boolean | undefined) {
+  return visible ? '' : 'el-tag-hidden'
+}
+function getTagStyle(color: string) {
+  if (color) {
+    return {
+      backgroundColor: color,
+    }
+  }
 }
 
 export default function Tag(props: TagProps) {
   const {
-    // children,
+    children,
     closeable,
-    // closeIcon,
-    // type,
-    // color,
-    // icon,
+    closeIcon,
+    type,
+    color,
+    icon,
     visible,
-    // size,
-    // effect,
+    size = 'medium',
+    effect = 'light',
     onClose,
     onClick,
   } = props
 
   const [className, setClassName] = useState(['el-tag'])
+  const [visibleClass, setVisClass] = useState('')
+  const [colorClass, setColorClass] = useState('')
+  const [bgColor, setBgColor] = useState('')
+  const [sizeClass, setSizeClass] = useState('')
+  const [effectClass, setEftClass] = useState('')
+  const [typeClass, setTypeClass] = useState('')
 
   // console.log(visible)
 
   useEffect(() => {
-    !visible && setClassName(className => ([...className, 'el-tag-hidden'])) // display:none
-  }, [visible])
+    setVisClass(getVisibleClass(visible))
+    setSizeClass(`el-tag--${size}`)
+    setEftClass(`el-tag--${effect}`)
+    type && setTypeClass(`el-tag--${type}`)
+    if (color) {
+      const tmpClass = getColorClass(color)
+      setColorClass(tmpClass)
+      if (tmpClass === 'el-tag-has-color')
+        setBgColor(color)
+    }
+  }, [visible, color])
 
   function handleClose(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
-    onClose(e)
-    setClassName([...className, 'el-tag-hidden'])
+    onClose && onClose(e)
+    setClassName([...className, 'el-tag--hidden'])
   }
 
-  return (
-    <span className={className.join(' ')} onClick={onClick}>
-      {
-        closeable
-        && <span
+  function getCloseContent() {
+    if (closeable) {
+      if (closeIcon) {
+        return closeIcon
+      }
+      else {
+        return <span
           role="img"
           aria-label="close"
           tabIndex={-1}
           onClick={handleClose}
-          className="el-icon el-icon-close el-tag-close-icon"
-        >close</span> }
-      {props.children}
+          className="el-icon el-icon-close el-tag-close-icon el-tag__close"
+        >×</span>
+      }
+    }
+  }
+
+  const classList = [
+    visibleClass,
+    colorClass,
+    sizeClass,
+    effectClass,
+    typeClass,
+    ...className,
+  ].filter(it => it).join(' ')
+  const closeContent = getCloseContent()
+
+  return (
+    <span className={classList} style={getTagStyle(bgColor)} onClick={onClick}>
+      {icon}
+      {children}
+      {closeContent}
     </span>
   )
 }
