@@ -1,14 +1,15 @@
 import React from 'react'
+import type { ReactTestRendererJSON } from 'react-test-renderer'
 import renderer from 'react-test-renderer'
-import { describe, it } from 'vitest'
-import Button from './index.tsx'
+import { describe, expect, it } from 'vitest'
+import Button from './index'
 
 describe('测试按钮', () => {
   it('按钮type', () => {
     const component = renderer.create(
       <Button type="primary">umaso</Button>,
     )
-    const { type, props } = component.toJSON()
+    const { type, props } = component.toJSON() as ReactTestRendererJSON
     expect(type).toBe('button')
     expect(props.className).toContain('el-button--primary')
   })
