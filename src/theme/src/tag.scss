@@ -19,6 +19,10 @@
     border-color: $--tag-primary-color;
   }
 
+  &.el-tag-hidden {
+    display: none;
+  }
+
   .el-tag__close {
     color: mix($--tag-primary-color, $--color-white, $fontColorWeight);
     &:hover {

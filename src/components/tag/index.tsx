@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import type { Component, MouseEventHandler, ReactNode } from 'react'
+import type { Component, MouseEvent, MouseEventHandler, ReactNode } from 'react'
 
 import '../../theme/src/tag.scss'
 
@@ -7,6 +7,7 @@ type SizeType = 'medium' | 'small' | 'mini'
 type EffectType = 'dark' | 'light' | 'plain'
 
 interface TagProps {
+  className?: string
   children?: string | Component
   closeable?: boolean
   closeIcon?: ReactNode
@@ -16,7 +17,7 @@ interface TagProps {
   visible?: boolean
   size?: SizeType | number
   effect?: EffectType
-  onClose?: MouseEventHandler
+  onClose?: (event: MouseEvent<HTMLSpanElement, globalThis.MouseEvent>, visible: boolean) => void
   onClick?: MouseEventHandler
 }
 
@@ -46,8 +47,9 @@ function getTagStyle(color: string) {
   }
 }
 
-export default function Tag(props: TagProps) {
+export default function Tag(props: TagProps): JSX.Element {
   const {
+    className,
     children,
     closeable,
     closeIcon,
@@ -61,7 +63,7 @@ export default function Tag(props: TagProps) {
     onClick,
   } = props
 
-  const [className, setClassName] = useState(['el-tag'])
+  const [originClass, setOriginClass] = useState(['el-tag'])
   const [visibleClass, setVisClass] = useState('')
   const [colorClass, setColorClass] = useState('')
   const [bgColor, setBgColor] = useState('')
@@ -75,6 +77,7 @@ export default function Tag(props: TagProps) {
     setVisClass(getVisibleClass(visible))
     setSizeClass(`el-tag--${size}`)
     setEftClass(`el-tag--${effect}`)
+    setOriginClass([...originClass, className || ''].filter(it => it !== ''))
     type && setTypeClass(`el-tag--${type}`)
     if (color) {
       const tmpClass = getColorClass(color)
@@ -84,9 +87,9 @@ export default function Tag(props: TagProps) {
     }
   }, [visible, color])
 
-  function handleClose(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
-    onClose && onClose(e)
-    setClassName([...className, 'el-tag--hidden'])
+  function handleClose(e: MouseEvent<HTMLSpanElement, globalThis.MouseEvent>, visible: boolean) {
+    onClose && onClose(e, visible)
+    setVisClass('el-tag-hidden')
   }
 
   function getCloseContent() {
@@ -99,10 +102,13 @@ export default function Tag(props: TagProps) {
           role="img"
           aria-label="close"
           tabIndex={-1}
-          onClick={handleClose}
+          onClick={e => handleClose(e, visible || false)}
           className="el-icon el-icon-close el-tag-close-icon el-tag__close"
         >×</span>
       }
+    }
+    else {
+      return ''
     }
   }
 
@@ -112,15 +118,13 @@ export default function Tag(props: TagProps) {
     sizeClass,
     effectClass,
     typeClass,
-    ...className,
+    ...originClass,
   ].filter(it => it).join(' ')
   const closeContent = getCloseContent()
 
   return (
     <span className={classList} style={getTagStyle(bgColor)} onClick={onClick}>
-      {icon}
-      {children}
-      {closeContent}
+      {[icon, children, closeContent]}
     </span>
   )
 }
