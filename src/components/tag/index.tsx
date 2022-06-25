@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import type { Component, MouseEvent, MouseEventHandler, ReactNode } from 'react'
+import type { MouseEvent, MouseEventHandler, ReactNode } from 'react'
 
 import '../../theme/src/tag.scss'
 
@@ -8,7 +8,7 @@ type EffectType = 'dark' | 'light' | 'plain'
 
 interface TagProps {
   className?: string
-  children?: string | Component
+  children?: string | ReactNode
   closeable?: boolean
   closeIcon?: ReactNode
   type?: string
