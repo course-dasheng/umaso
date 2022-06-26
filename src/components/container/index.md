@@ -169,7 +169,7 @@ export default () => {
          {
             asideList.map((item) => {
               return <p key={item}
-                dangerouslySetInnerHTML={{ __html: <a href="javascript:void(0);">{ item }</a> }}>
+                dangerouslySetInnerHTML={{ __html: `<a href="javascript:void(0);">${ item }</a>` }}>
               </p>
             })
           }
