@@ -6,13 +6,14 @@ import '../../theme/src/tag.scss'
 
 type SizeType = 'medium' | 'small' | 'mini'
 type EffectType = 'dark' | 'light' | 'plain'
+type TagColorType = 'success' | 'warning' | 'danger' | 'info'
 
 interface TagProps {
   className?: string
   children?: string | ReactNode
   closeable?: boolean
   closeIcon?: ReactNode
-  type?: string
+  type?: TagColorType
   color?: string
   icon?: ReactNode
   visible?: boolean
@@ -32,11 +33,12 @@ const InternalTag: React.ForwardRefRenderFunction<HTMLSpanElement, TagProps> = (
   color,
   icon,
   visible,
-  size = 'medium',
+  size,
   effect = 'light',
   onClose,
   onClick,
   style,
+  ...props
 }, ref): JSX.Element => {
   const colorKeys = ['red', 'green', 'blue', 'magenta', 'volcano', 'orange', 'gold', 'lime', 'cyan', 'geekblue', 'purple']
   function getColorClass(color: string | undefined) {
@@ -53,6 +55,8 @@ const InternalTag: React.ForwardRefRenderFunction<HTMLSpanElement, TagProps> = (
   }
 
   function getVisibleClass(visible: boolean | undefined) {
+    if (typeof visible !== 'boolean')
+      visible = true
     return visible ? '' : 'el-tag-hidden'
   }
   function getTagStyle(color: string, style: React.CSSProperties | undefined) {
@@ -86,7 +90,7 @@ const InternalTag: React.ForwardRefRenderFunction<HTMLSpanElement, TagProps> = (
       if (tmpClass === 'el-tag-has-color')
         setBgColor(color)
     }
-  }, [visible, color, size, effect, type])
+  }, [visible, color])
 
   function handleClose(e: MouseEvent<HTMLSpanElement, globalThis.MouseEvent>, visible: boolean) {
     onClose && onClose(e, visible)
@@ -126,7 +130,7 @@ const InternalTag: React.ForwardRefRenderFunction<HTMLSpanElement, TagProps> = (
   // console.log(effectClass)
 
   return (
-    <span ref={ref} className={classList} style={getTagStyle(bgColor, style)} onClick={onClick}>
+    <span {...props} ref={ref} className={classList} style={getTagStyle(bgColor, style)} onClick={onClick}>
       {icon}{children}{closeContent}
     </span>
   )
