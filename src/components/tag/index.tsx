@@ -127,7 +127,7 @@ const InternalTag: React.ForwardRefRenderFunction<HTMLSpanElement, TagProps> = (
 
   return (
     <span ref={ref} className={classList} style={getTagStyle(bgColor, style)} onClick={onClick}>
-      {[icon, children, closeContent]}
+      {icon}{children}{closeContent}
     </span>
   )
 }
