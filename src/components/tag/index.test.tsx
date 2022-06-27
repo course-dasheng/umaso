@@ -1,8 +1,8 @@
 import type { ReactTestRendererJSON } from 'react-test-renderer'
-import { describe, it } from 'vitest'
+import { describe, it,vi } from 'vitest'
 import * as React from 'react'
 import renderer from 'react-test-renderer'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Tag from './index'
 
 describe('测试标签', () => {
@@ -11,18 +11,30 @@ describe('测试标签', () => {
     expect(rest).toMatchSnapshot()
   })
   it('Tag visible and closeable', () => {
-    const onClose = () => {}
-    const wrapper = render(<Tag visible={true} closeable={true} onClose={onClose} >测试</Tag>)
-    expect(wrapper)
+    const onClose = vi.fn(() => {})
+    // const wrapper = render(<Tag visible={true} closeable={true} onClose={onClose} >测试</Tag>)
+    // expect(wrapper)
 
-    const rest = renderer.create(<Tag visible={false} closeable={true} onClose={onClose} >测试</Tag>)
-    const { props: { className } } = rest.toJSON() as ReactTestRendererJSON
+    // props change
+    const {baseElement,rerender} = render(<Tag visible={false} closeable={true} onClose={onClose} >测试</Tag>)
+    expect(baseElement.querySelector(".el-tag-hidden")).toBeInTheDocument()
+    // expect(baseElement.querySelector(".el-tag-hidden")).toBeTruthy () // 凑合也可以
+    rerender(<Tag visible={true} closeable={true} onClose={onClose} >测试</Tag>)
+    expect(baseElement.querySelector(".el-tag-hidden")).toBeNull()
 
-    const instanceRoot = rest.root
-    const closeIcon = instanceRoot.findByProps({ className: 'el-icon el-icon-close el-tag-close-icon el-tag__close' })
+    let closeBtn = baseElement.querySelector('.el-tag-close-icon') as Element
+    expect(closeBtn).toBeInTheDocument()
+    fireEvent.click(closeBtn)
+    expect(onClose).toHaveBeenCalledTimes(1)
+    // const { props: { className }} = rest.toJSON() as ReactTestRendererJSON
+    // console.log(className)
+    // const ele = rest..getElementsByClassName("loading")
+    // console.log(ele)
+    // const instanceRoot = rest.root
+    // const closeIcon = instanceRoot.findByProps({ className: 'el-tag__close' })
 
-    expect(className).toContain('el-tag-hidden')
-    expect(closeIcon)
+    // expect(className).toContain('el-tag-hidden')
+    // expect(closeIcon)
   })
   it('Tag type and color and effect', () => {
     const rest1 = renderer.create(<Tag type="success">test type</Tag>)
