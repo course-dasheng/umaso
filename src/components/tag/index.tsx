@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import * as React from 'react'
 import type { MouseEvent, MouseEventHandler, ReactNode } from 'react'
+// import classnames from 'classnames'
 
 import '../../theme/src/tag.scss'
 
@@ -17,75 +18,75 @@ interface TagProps {
   visible?: boolean
   size?: SizeType | number
   effect?: EffectType
+  style?: React.CSSProperties
   onClose?: (event: MouseEvent<HTMLSpanElement, globalThis.MouseEvent>, visible: boolean) => void
   onClick?: MouseEventHandler
 }
 
-const colorKeys = ['red', 'green', 'blue', 'magenta', 'volcano', 'orange', 'gold', 'lime', 'cyan', 'geekblue', 'purple']
+const InternalTag: React.ForwardRefRenderFunction<HTMLSpanElement, TagProps> = ({
+  className,
+  children,
+  closeable,
+  closeIcon,
+  type,
+  color,
+  icon,
+  visible,
+  size = 'medium',
+  effect = 'light',
+  onClose,
+  onClick,
+  style,
+}, ref): JSX.Element => {
+  const colorKeys = ['red', 'green', 'blue', 'magenta', 'volcano', 'orange', 'gold', 'lime', 'cyan', 'geekblue', 'purple']
+  function getColorClass(color: string | undefined) {
+    let colorClassName: string
+    if (color) {
+      if (colorKeys.includes(color))
+        colorClassName = `el-tag-${color}`
+      else
+        colorClassName = 'el-tag-has-color'
 
-function getColorClass(color: string | undefined) {
-  let colorClassName: string
-  if (color) {
-    if (colorKeys.includes(color))
-      colorClassName = `el-tag-${color}`
-    else
-      colorClassName = 'el-tag-has-color'
-
-    return colorClassName
+      return colorClassName
+    }
+    return ''
   }
-  return ''
-}
 
-function getVisibleClass(visible: boolean | undefined) {
-  return visible ? '' : 'el-tag-hidden'
-}
-function getTagStyle(color: string) {
-  if (color) {
-    return {
-      backgroundColor: color,
+  function getVisibleClass(visible: boolean | undefined) {
+    return visible ? '' : 'el-tag-hidden'
+  }
+  function getTagStyle(color: string, style: React.CSSProperties | undefined) {
+    if (color && style) {
+      return {
+        backgroundColor: color,
+        ...style,
+      }
+    }
+    else if (color) {
+      return {
+        backgroundColor: color,
+      }
+    }
+    else if (style) {
+      return style
     }
   }
-}
 
-export default function Tag(props: TagProps): JSX.Element {
-  const {
-    className,
-    children,
-    closeable,
-    closeIcon,
-    type,
-    color,
-    icon,
-    visible,
-    size = 'medium',
-    effect = 'light',
-    onClose,
-    onClick,
-  } = props
-
-  const [originClass, setOriginClass] = useState(['el-tag'])
-  const [visibleClass, setVisClass] = useState('')
-  const [colorClass, setColorClass] = useState('')
-  const [bgColor, setBgColor] = useState('')
-  const [sizeClass, setSizeClass] = useState('')
-  const [effectClass, setEftClass] = useState('')
-  const [typeClass, setTypeClass] = useState('')
+  const [originClass, setOriginClass] = React.useState(['el-tag'])
+  const [visibleClass, setVisClass] = React.useState('')
+  const [bgColor, setBgColor] = React.useState('')
 
   // console.log(visible)
 
-  useEffect(() => {
+  React.useEffect(() => {
     setVisClass(getVisibleClass(visible))
-    setSizeClass(`el-tag--${size}`)
-    setEftClass(`el-tag--${effect}`)
     setOriginClass([...originClass, className || ''].filter(it => it !== ''))
-    type && setTypeClass(`el-tag--${type}`)
     if (color) {
       const tmpClass = getColorClass(color)
-      setColorClass(tmpClass)
       if (tmpClass === 'el-tag-has-color')
         setBgColor(color)
     }
-  }, [visible, color])
+  }, [visible, color, size, effect, type])
 
   function handleClose(e: MouseEvent<HTMLSpanElement, globalThis.MouseEvent>, visible: boolean) {
     onClose && onClose(e, visible)
@@ -103,7 +104,7 @@ export default function Tag(props: TagProps): JSX.Element {
           aria-label="close"
           tabIndex={-1}
           onClick={e => handleClose(e, visible || false)}
-          className="el-icon el-icon-close el-tag-close-icon el-tag__close"
+          className="el-tag-close-icon el-tag__close"
         >×</span>
       }
     }
@@ -114,17 +115,22 @@ export default function Tag(props: TagProps): JSX.Element {
 
   const classList = [
     visibleClass,
-    colorClass,
-    sizeClass,
-    effectClass,
-    typeClass,
+    getColorClass(color),
+    size ? `el-tag--${size}` : '',
+    effect ? `el-tag--${effect}` : '',
+    type ? `el-tag--${type}` : '',
     ...originClass,
   ].filter(it => it).join(' ')
   const closeContent = getCloseContent()
 
+  // console.log(effectClass)
+
   return (
-    <span className={classList} style={getTagStyle(bgColor)} onClick={onClick}>
+    <span ref={ref} className={classList} style={getTagStyle(bgColor, style)} onClick={onClick}>
       {[icon, children, closeContent]}
     </span>
   )
 }
+
+const Tag = React.forwardRef<HTMLSpanElement, TagProps>(InternalTag)
+export default Tag
