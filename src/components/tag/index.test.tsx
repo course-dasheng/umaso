@@ -50,8 +50,8 @@ describe('测试标签', () => {
     const className3 = json3.props.className
     const className4 = json4.props.className
 
-    expect(json5.props.style.backgroundColor).toEqual('#fff')
-    expect(json6.props.style.backgroundColor).toEqual('#fff')
+    expect(json5.props.style.color).toEqual('#fff')
+    expect(json6.props.style.color).toEqual('#fff')
 
     expect(className1).toContain('el-tag--success')
     expect(className2).toContain('el-tag-magenta')
