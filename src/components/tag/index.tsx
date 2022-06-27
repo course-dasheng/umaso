@@ -56,13 +56,13 @@ const InternalTag: React.ForwardRefRenderFunction<HTMLSpanElement, TagProps> = (
     return visible ? '' : 'el-tag-hidden'
   }
   function getTagStyle(color: string, style: React.CSSProperties | undefined) {
-    if (color && style) {
+    if (color && !colorKeys.includes(color) && style) {
       return {
         backgroundColor: color,
         ...style,
       }
     }
-    else if (color) {
+    else if (color && !colorKeys.includes(color)) {
       return {
         backgroundColor: color,
       }

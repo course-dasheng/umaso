@@ -29,16 +29,20 @@ describe('测试标签', () => {
     const rest1 = renderer.create(<Tag type="success">test type</Tag>)
     const rest2 = renderer.create(<Tag color="magenta">test color</Tag>)
     const rest3 = renderer.create(<Tag effect="plain" >test color</Tag>)
+    const rest4 = renderer.create(<Tag color="#fff" >test color</Tag>)
     const json1 = rest1.toJSON() as ReactTestRendererJSON
     const json2 = rest2.toJSON() as ReactTestRendererJSON
     const json3 = rest3.toJSON() as ReactTestRendererJSON
+    const json4 = rest4.toJSON() as ReactTestRendererJSON
 
     const className1 = json1.props.className
     const className2 = json2.props.className
     const className3 = json3.props.className
+    const className4 = json4.props.className
 
     expect(className1).toContain('el-tag--success')
     expect(className2).toContain('el-tag-magenta')
     expect(className3).toContain('el-tag--plain')
+    expect(className4).toContain('el-tag-has-color')
   })
 })
