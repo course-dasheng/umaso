@@ -1,0 +1,51 @@
+// Vitest Snapshot v1
+
+exports[`ElAside.react > Aside snapshot 1`] = `
+<aside
+  className="el-aside"
+  name="el-aside"
+  style={
+    {
+      "width": "300px",
+    }
+  }
+/>
+`;
+
+exports[`ElContainer.react > Container snapshot 1`] = `
+<section
+  className="el-container"
+  name="el-container"
+/>
+`;
+
+exports[`ElFooter.react > Footer snapshot 1`] = `
+<footer
+  className="el-footer"
+  name="el-footer"
+  style={
+    {
+      "height": "60px",
+    }
+  }
+/>
+`;
+
+exports[`ElHeader.react > Header snapshot 1`] = `
+<header
+  className="el-header"
+  name="el-header"
+  style={
+    {
+      "height": "60px",
+    }
+  }
+/>
+`;
+
+exports[`ElMain.react > Main snapshot 1`] = `
+<main
+  className="el-main"
+  name="el-main"
+/>
+`;
