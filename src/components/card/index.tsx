@@ -2,16 +2,10 @@ import React from 'react'
 import classNames from 'classnames'
 import '../../theme/src/card.scss'
 
-enum TypeShadow {
-  always = 'always',
-  hover = 'hover',
-  never = 'never',
-}
-
 interface CardProps {
   header?: React.ReactNode | string
   bodyStyle?: Object
-  shadow?: TypeShadow
+  shadow?: 'always' | 'hover' | 'never'
   children?: React.ReactNode
   className?: string
 }

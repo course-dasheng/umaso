@@ -39,9 +39,6 @@ describe('ElCard.react', () => {
   it('Card shadow', () => {
     const component = renderer.create(
       <ElCard
-        // ! 这里为什么会报错？错误信息如下
-        // Type '"hover"' is not assignable to type 'TypeShadow | undefined'.ts(2322)
-        // index.tsx(14, 3): The expected type comes from property 'shadow' which is declared here on type 'IntrinsicAttributes & CardProps'
         shadow="hover"
       ></ElCard>,
     )
