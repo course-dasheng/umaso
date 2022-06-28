@@ -1,0 +1,16 @@
+// Vitest Snapshot v1
+
+exports[`ElCard.react > Card snapshot 1`] = `
+<div
+  className="el-card"
+>
+  <div
+    className="el-card__body"
+    style={
+      {
+        "padding": "20px",
+      }
+    }
+  />
+</div>
+`;
