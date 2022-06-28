@@ -85,4 +85,20 @@ export default () => {
 
 ```
 
+`closeable` 开启关闭按钮，`closeIcon` 传入 `Icon compoonent`
+
+```tsx
+import React, { useState } from 'react'
+import { Button, Tag } from 'umaso'
+
+export default () => {
+  const [visible, setVisible] = useState(true)
+
+  return <div>
+    <Tag type="primary" closeable={true} >测试</Tag>
+  </div>
+}
+
+```
+
 <API />
