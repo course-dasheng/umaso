@@ -1,7 +1,7 @@
 import React from 'react'
 import type { ReactTestRendererJSON } from 'react-test-renderer'
 import renderer from 'react-test-renderer'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import Link from './index'
