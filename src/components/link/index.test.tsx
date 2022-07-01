@@ -46,6 +46,14 @@ describe('test link component', () => {
     expect(props.className).not.toContain('is-underline')
   })
 
+  it('test href props', () => {
+    const url = "https://github.com/course-dasheng/umaso"
+    const comp = renderer.create(<Link href={url}>link underline</Link>)
+    const { props } = comp.toJSON() as ReactTestRendererJSON
+    expect(props.href).toEqual(url)
+  })
+
+
   it('test link slot', () => {
     function Content(props: { desc: string }) {
       return <span>this is content, {props.desc}</span>
