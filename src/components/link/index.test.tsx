@@ -47,12 +47,11 @@ describe('test link component', () => {
   })
 
   it('test href props', () => {
-    const url = "https://github.com/course-dasheng/umaso"
+    const url = 'https://github.com/course-dasheng/umaso'
     const comp = renderer.create(<Link href={url}>link underline</Link>)
     const { props } = comp.toJSON() as ReactTestRendererJSON
     expect(props.href).toEqual(url)
   })
-
 
   it('test link slot', () => {
     function Content(props: { desc: string }) {
