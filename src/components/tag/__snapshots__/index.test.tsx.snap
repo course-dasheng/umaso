@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`测试标签 > render Tag  1`] = `
+<span
+  className="el-tag--light el-tag"
+>
+  测试
+</span>
+`;
