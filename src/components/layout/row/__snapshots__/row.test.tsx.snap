@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`Row.react > Row snapshot 1`] = `
+<div
+  className="el-row"
+  name="el-row"
+  style={{}}
+/>
+`;
