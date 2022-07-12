@@ -1,6 +1,5 @@
 import type { FC, ReactNode } from 'react'
 import React, { createContext } from 'react'
-
 import classNames from 'classnames'
 import '../../../theme/src/row.scss'
 
@@ -35,8 +34,10 @@ export interface RowProps extends RowType {
   children?: ReactNode
   style?: React.CSSProperties
 }
-
-export const RowContext = createContext({})
+export interface RowContextState {
+  gutter?: number
+}
+export const RowContext = createContext<RowContextState>({})
 
 export const Row: FC<RowProps> = (props) => {
   const {
@@ -73,7 +74,7 @@ export const Row: FC<RowProps> = (props) => {
     classList.push('el-row--flex')
 
   const className = classNames(partClassName, [...classList].join(' '))
-  const rowContext = React.useMemo(() => gutter, [gutter])
+  const rowContext = React.useMemo(() => ({ gutter }), [gutter])
   const RowComponent = React.createElement(RowContext.Provider, { value: rowContext },
     React.createElement(
       tag,

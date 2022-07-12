@@ -2,7 +2,6 @@ import React from 'react'
 import type { ReactTestRendererJSON } from 'react-test-renderer'
 import renderer from 'react-test-renderer'
 import { describe, expect, it } from 'vitest'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Row as ElRow, RowContext } from './index'
 
 describe('Row.react', () => {
@@ -54,5 +53,21 @@ describe('Row.react', () => {
       marginLeft: `-${count}px`,
       marginRight: `-${count}px`,
     })
+  })
+
+  it('Row context', () => {
+    const count = 10
+    const gutter = count * 2
+    const Children = () => {
+      const { gutter: gutterValue } = React.useContext(RowContext)
+      return <>{gutterValue}</>
+    }
+    const component = renderer.create(
+      <ElRow gutter={gutter}>
+        <Children />
+      </ElRow>,
+    )
+    const { children } = component.toJSON() as ReactTestRendererJSON
+    expect(children).toEqual(['20'])
   })
 })
