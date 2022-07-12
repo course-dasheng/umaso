@@ -18,13 +18,79 @@ group:
 
 ```tsx
 import React from 'react'
-import { ElRow } from 'umaso'
+import { ElCol, ElRow } from 'umaso'
 
 export default () => (
   <>
-    <ElRow type="flex">AAA</ElRow>
-    <ElRow align="bottom">BBBB</ElRow>
+    {/* 在 el-row中，el-col直接占 24份 */}
+    <ElRow className="row-bg">
+      <ElCol span={24}><div className="grid-content bg-purple-dark"></div></ElCol>
+    </ElRow>
+
+    {/* 在 el-row中，左 右 el-col占 12份 */}
+    <ElRow className="row-bg">
+      <ElCol span={12}><div className="grid-content bg-purple"></div></ElCol>
+      <ElCol span={12}><div className="grid-content bg-purple-light"></div></ElCol>
+    </ElRow>
+
+    {/* 在 el-row中，左 中 右 el-col各占 8份 */}
+    <ElRow className="row-bg">
+      <ElCol span={8}><div className="grid-content bg-purple"></div></ElCol>
+      <ElCol span={8}><div className="grid-content bg-purple-light"></div></ElCol>
+      <ElCol span={8}><div className="grid-content bg-purple"></div></ElCol>
+    </ElRow>
+
+    {/* 在 el-row中，四个 el-col各占 6份 */}
+    <ElRow className="row-bg">
+      <ElCol span={6}><div className="grid-content bg-purple"></div></ElCol>
+      <ElCol span={6}><div className="grid-content bg-purple-light"></div></ElCol>
+      <ElCol span={6}><div className="grid-content bg-purple"></div></ElCol>
+      <ElCol span={6}><div className="grid-content bg-purple-light"></div></ElCol>
+    </ElRow>
+
+    {/* 在 el-row中，六个 el-col各占 4份 */}
+    <ElRow className="row-bg">
+      <ElCol span={4}><div className="grid-content bg-purple"></div></ElCol>
+      <ElCol span={4}><div className="grid-content bg-purple-light"></div></ElCol>
+      <ElCol span={4}><div className="grid-content bg-purple"></div></ElCol>
+      <ElCol span={4}><div className="grid-content bg-purple-light"></div></ElCol>
+      <ElCol span={4}><div className="grid-content bg-purple"></div></ElCol>
+      <ElCol span={4}><div className="grid-content bg-purple-light"></div></ElCol>
+    </ElRow>
+
+    <br/>
+
+    <style>{FillStyles()}</style>
   </>
 )
 
+function FillStyles() {
+  return `
+  .el-row {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 5px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+  }
+  `
+}
 ```

@@ -1,2 +1,3 @@
 import { Row as ElRow } from './row'
-export { ElRow }
+import { Col as ElCol } from './col'
+export { ElRow, ElCol }
