@@ -6,7 +6,7 @@ import Tag from '../tag/index'
 import Space from './index'
 
 describe('测试标签', () => {
-  it('render Tag ', () => {
+  it('render Space ', () => {
     const rest = renderer.create(
       <div>
         <Space>
