@@ -24,3 +24,5 @@
 # ide
 /.vscode
 /.idea
+
+.history
