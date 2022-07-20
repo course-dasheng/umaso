@@ -186,7 +186,7 @@ export default () => {
                   <th>id</th>
                   <th>name</th>
                   <th>address</th>
-                  <th>info</th>
+                  <th>message</th>
                 </tr>
               </thead>
               <tbody>
@@ -197,7 +197,7 @@ export default () => {
                       <td>{row.id}</td>
                       <td>{row.name}</td>
                       <td>{row.address}</td>
-                      <td>{row.info}</td>
+                      <td>{row.message}</td>
                     </tr>
                   )
                 })
