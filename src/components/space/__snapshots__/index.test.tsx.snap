@@ -1,0 +1,48 @@
+// Vitest Snapshot v1
+
+exports[`测试标签 > render Space  1`] = `
+<div>
+  <div
+    className="el-space el-space--horizontal el-space--align-start"
+    style={
+      {
+        "flexWrap": "nowrap",
+        "gap": "8px",
+      }
+    }
+  >
+    <span
+      className="el-tag--light el-tag"
+    >
+      标签 0
+    </span>
+    <span
+      className="el-tag--mini el-tag--light el-tag"
+    >
+      标签 1
+    </span>
+    <span
+      className="el-tag--small el-tag--light el-tag"
+    >
+      标签 2
+    </span>
+    <span
+      className="el-tag--medium el-tag--light el-tag"
+    >
+      标签 3
+    </span>
+  </div>
+</div>
+`;
+
+exports[`测试标签 > render Tag  1`] = `
+<div>
+  <div
+    style={
+      {
+        "gap": undefined,
+      }
+    }
+  />
+</div>
+`;

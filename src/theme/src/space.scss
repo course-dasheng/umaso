@@ -1,0 +1,22 @@
+@import 'common/var';
+@import 'mixins/mixins';
+@import 'mixins/utils';
+
+.el-space {
+  display: flex;
+}
+.el-space--vertical {
+  direction: column;
+}
+.el-space--align-start {
+  align-items: flex-start;
+}
+.el-space--align-center {
+  align-items: center;
+}
+.el-space--align-end {
+  align-items: flex-end;
+}
+.el-space--align-baseline {
+  align-items: baseline;
+}
