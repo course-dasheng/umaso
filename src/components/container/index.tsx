@@ -83,13 +83,13 @@ function generateComponent(tagName: string, typeName: TypeEnum) {
       return (MyComponent: any) => {
         const Adapter: FC<ContainerProps> = (props) => {
           const { height = '60px', ...otherList } = props
-          const newPorps = {
+          const newProps = {
             ...otherList,
             style: { height },
             tagName,
             typeName,
           }
-          return <MyComponent {...newPorps} />
+          return <MyComponent {...newProps} />
         }
         return Adapter
       }
@@ -98,13 +98,13 @@ function generateComponent(tagName: string, typeName: TypeEnum) {
       return (MyComponent: any) => {
         const Adapter: FC<ContainerProps> = (props) => {
           const { width = '300px', ...otherList } = props
-          const newPorps = {
+          const newProps = {
             ...otherList,
             style: { width },
             tagName,
             typeName,
           }
-          return <MyComponent {...newPorps} />
+          return <MyComponent {...newProps} />
         }
         return Adapter
       }
@@ -112,12 +112,12 @@ function generateComponent(tagName: string, typeName: TypeEnum) {
     case TypeEnum.main: {
       return (MyComponent: any) => {
         const Adapter: FC<ContainerProps> = (props) => {
-          const newPorps = {
+          const newProps = {
             ...props,
             typeName,
             tagName,
           }
-          return <MyComponent {...newPorps} />
+          return <MyComponent {...newProps} />
         }
         return Adapter
       }
@@ -126,13 +126,13 @@ function generateComponent(tagName: string, typeName: TypeEnum) {
       return (MyComponent: any) => {
         const Adapter: FC<ContainerProps> = (props) => {
           const { direction = DirectionEnum.horizontal, ...otherList } = props
-          const newPorps = {
+          const newProps = {
             ...otherList,
             typeName,
             tagName,
             direction,
           }
-          return <MyComponent {...newPorps} />
+          return <MyComponent {...newProps} />
         }
         return Adapter
       }
